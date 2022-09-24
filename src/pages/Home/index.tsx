@@ -1,4 +1,4 @@
-import { CurrencyCircleDollar, HandPalm, Play } from 'phosphor-react'
+import { HandPalm, Play } from 'phosphor-react'
 import {
   CountdownContainer,
   FormContainer,
@@ -12,7 +12,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
-import React, { SetStateAction, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { differenceInSeconds } from 'date-fns'
 
 const newCycleFormValidationSchema = zod.object({
@@ -47,7 +47,7 @@ export const Home = () => {
   function handleCreateNewCycle(data: newCycleFormData) {
     const id = String(new Date().getTime())
 
-    const newCycle: Cycle = {
+    const newCycle = {
       id,
       task: data.task,
       minutesAmount: data.minutesAmount,
@@ -62,7 +62,7 @@ export const Home = () => {
   }
 
   const activeCycle: any = cycles.find(
-    (cycles: Cycle) => cycles.id == activeCycleId,
+    (cycles: Cycle) => cycles.id === activeCycleId,
   )
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
 
@@ -78,8 +78,8 @@ export const Home = () => {
 
         if (secondsDiference >= totalSeconds) {
           setCycles((state: Cycle) => {
-            state.map((cycle) => {
-              if (cycle.id == activeCycleId) {
+            return state.map((cycle: Cycle) => {
+              if (cycle.id === activeCycleId) {
                 return { ...cycle, finishedDate: new Date() }
               } else {
                 return cycle
@@ -121,8 +121,8 @@ export const Home = () => {
     setActiveCycleId(null)
 
     setCycles((state) =>
-      state.map((cycle) => {
-        if (cycle.id == activeCycleId) {
+      state.map((cycle: Cycle) => {
+        if (cycle.id === activeCycleId) {
           return { ...cycle, interruptedDate: new Date() }
         } else {
           return cycle
