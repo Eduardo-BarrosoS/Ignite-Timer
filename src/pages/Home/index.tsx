@@ -32,7 +32,7 @@ interface Cycle {
 }
 
 export const Home = () => {
-  const [cycles, setCycles] = useState<Cycle>([])
+  const [cycles, setCycles] = useState<Cycle[]>([])
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
   const [amountSecondsPassed, setAmountSecondsPassed] = useState(0)
 
@@ -57,7 +57,7 @@ export const Home = () => {
     setActiveCycleId(id)
     setAmountSecondsPassed(0)
 
-    setCycles((state: Cycle) => [...state, newCycle])
+    setCycles((state) => [...state, newCycle])
     reset()
   }
 
@@ -77,8 +77,8 @@ export const Home = () => {
         )
 
         if (secondsDiference >= totalSeconds) {
-          setCycles((state: Cycle) => {
-            return state.map((cycle: Cycle) => {
+          setCycles((state) => {
+            return state.map((cycle) => {
               if (cycle.id === activeCycleId) {
                 return { ...cycle, finishedDate: new Date() }
               } else {
