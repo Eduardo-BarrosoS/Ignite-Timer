@@ -15,16 +15,16 @@ export const Header = () => {
       <nav>
         <NavLink
           to=""
-          onClick={() => setActive(true)}
-          className={active === true ? 'navActive' : ''}
+          // onClick={() => setActive(true)}
+          // className={active === true ? 'navActive' : ''}
           title="Timer"
         >
           <Timer size={24} />
         </NavLink>
         <NavLink
           to="/history"
-          onClick={() => setActive(false)}
-          className={active === false ? 'navActive' : ''}
+          // onClick={() => setActive(false)}
+          // className={active === false ? 'navActive' : ''}
           title="Histórico"
         >
           <Scroll size={24} />
